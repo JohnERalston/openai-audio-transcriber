@@ -1,5 +1,5 @@
 {
-  "name": "audio-converter",
+  "name": "audio-transcriber",
   "version": "0.1.0",
   "private": false,
   "scripts": {

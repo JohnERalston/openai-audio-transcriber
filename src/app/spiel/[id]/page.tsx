@@ -3,6 +3,7 @@ import { ITranscription } from "@/components/ITranscription";
 import db from "@/utils/db";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 async function getTranscription(id: string) {
   const doc = await db.collection("transcriptions").doc(id).get();
@@ -36,14 +37,31 @@ const Spiel: FC<Props> = async ({ params }: Props) => {
   const transcription = await getTranscription(params.id);
   return (
     <form action={updateTranscription}>
-      <h3>{transcription.fileName}</h3>
-      <h4>{transcription.transcribedDate}</h4>
+      <div className="mb-5">
+        <h1 className="text-center text-2xl font-bold">
+          {transcription.fileName}
+        </h1>
+        <div className="flex justify-around">
+          <Link href="/">&lt;&lt; Transcriptions</Link>
+          <div className="ml-auto text-sm italic">
+            {transcription.transcribedDate}
+          </div>
+        </div>
+      </div>
       <input type="hidden" name="id" value={transcription.id} />
       <textarea
+        className="w-full h-screen whitespace-pre-wrap p-1 rounded-lg"
         name="updatedTranscription"
         defaultValue={transcription.transcription}
       ></textarea>
-      <button type="submit">Save</button>
+      <div className="mt-1 text-right">
+        <button
+          type="submit"
+          className="border-white border rounded p-2 w-full"
+        >
+          Save
+        </button>
+      </div>
     </form>
   );
 };

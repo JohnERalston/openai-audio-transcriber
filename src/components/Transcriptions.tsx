@@ -7,6 +7,12 @@ type Props = {
 };
 
 export const Transcriptions: FC<Props> = ({ transcriptions }: Props) => {
+  if (transcriptions.length === 0) {
+    return (
+      <div className="italic text-center">There are no transcriptions</div>
+    );
+  }
+
   return (
     <div id="transcriptionGrid">
       {transcriptions.map(({ id, fileName, size, transcribedDate }) => (
@@ -15,7 +21,7 @@ export const Transcriptions: FC<Props> = ({ transcriptions }: Props) => {
             <Link href={`/spiel/${id}`}>{fileName}</Link>
           </div>
           <div>{size}</div>
-          <div>{transcribedDate}</div>
+          <div className="text-right">{transcribedDate}</div>
         </React.Fragment>
       ))}
     </div>
