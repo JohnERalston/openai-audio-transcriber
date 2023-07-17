@@ -1,10 +1,18 @@
+# Audio file upload for transcription by OpenAi, editable transcript
+
+- NextJS app to upload an audio file for transcription.
+- With editable transcript.
+- Uses **firestore** to save the transcript, uses and **firestore-storage** to store the audio file.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
 
-```bash
+```bashy
 npm run dev
 # or
 yarn dev

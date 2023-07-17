@@ -18,10 +18,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+}
+
+#transcriptionGrid {
+  display: grid;
+  grid-template-columns: 4fr 2fr 2fr;
 }
