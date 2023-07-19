@@ -17,7 +17,11 @@ export async function uploadFile(file: File): Promise<string> {
     await bucket.file(file.name).save(buffer, {
       resumable: true, // Set to true for large file uploads
     });
-    return file.name;
+    await bucket.file(file.name).makePublic();
+    const url = bucket.file(file.name).publicUrl();
+
+    //.getSignedUrl({ action: "read", expires: "2050-12-31" });
+    return url;
   } catch (error) {
     console.error("Error uploading file:", error);
     return "";

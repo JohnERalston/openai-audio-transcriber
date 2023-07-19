@@ -4,6 +4,7 @@ import db from "@/utils/db";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Audio } from "@/components/Audio";
 
 async function getTranscription(id: string) {
   const doc = await db.collection("transcriptions").doc(id).get();
@@ -41,12 +42,15 @@ const Spiel: FC<Props> = async ({ params }: Props) => {
         <h1 className="text-center text-2xl font-bold">
           {transcription.fileName}
         </h1>
-        <div className="flex justify-around">
+
+        <div className="flex justify-around mb-5">
           <Link href="/">&lt;&lt; Transcriptions</Link>
           <div className="ml-auto text-sm italic">
             {transcription.transcribedDate}
           </div>
         </div>
+
+        <Audio url={transcription.url} />
       </div>
       <input type="hidden" name="id" value={transcription.id} />
       <textarea
