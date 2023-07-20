@@ -6,4 +6,5 @@ export interface ITranscription {
   transcription: string;
   size: number;
   minutes: number;
+  complete: boolean;
 }

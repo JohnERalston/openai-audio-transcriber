@@ -21,9 +21,11 @@ async function updateTranscription(values: FormData) {
   "use server";
   const updatedTranscription = values.get("updatedTranscription");
   const id = values.get("id")! as string;
+  const complete = values.get("complete");
   await db.collection("transcriptions").doc(id).update({
     transcription: updatedTranscription,
     transcribedDate: new Date().toISOString(),
+    complete: !!complete,
   });
   redirect("/");
 }
@@ -33,6 +35,8 @@ type Props = {
     id: string;
   };
 };
+
+export const revalidate = 0;
 
 const Spiel: FC<Props> = async ({ params }: Props) => {
   const transcription = await getTranscription(params.id);
@@ -54,10 +58,19 @@ const Spiel: FC<Props> = async ({ params }: Props) => {
       </div>
       <input type="hidden" name="id" value={transcription.id} />
       <textarea
-        className="w-full h-screen whitespace-pre-wrap p-1 rounded-lg"
+        className="w-full h-96 whitespace-pre-wrap p-1 rounded-lg"
         name="updatedTranscription"
         defaultValue={transcription.transcription}
       ></textarea>
+      <div className="text-right my-2">
+        <input
+          id="complete"
+          name="complete"
+          type="checkbox"
+          defaultChecked={transcription.complete}
+        />{" "}
+        <label htmlFor="complete">Complete</label>
+      </div>
       <div className="mt-1 text-right">
         <button
           type="submit"

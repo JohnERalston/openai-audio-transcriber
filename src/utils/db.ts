@@ -13,7 +13,7 @@ export async function uploadFile(file: File): Promise<string> {
   try {
     const bucket = admin.storage().bucket();
     const fileBuffer = await file.arrayBuffer();
-    const buffer = new Buffer(fileBuffer);
+    const buffer = Buffer.from(fileBuffer);
     await bucket.file(file.name).save(buffer, {
       resumable: true, // Set to true for large file uploads
     });

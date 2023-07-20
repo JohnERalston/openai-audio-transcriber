@@ -3,6 +3,8 @@ import { transcribeItem } from "@/transcribe";
 import { getTranscriptions } from "@/utils/getTranscriptions";
 import { revalidatePath } from "next/cache";
 
+export const revalidate = 0;
+
 async function doTranscribe(data: FormData) {
   "use server";
   await transcribeItem(data);
@@ -22,7 +24,7 @@ export default async function Home() {
           >
             Transcribe
           </button>
-          <input type="file" name="file" />
+          <input type="file" name="file" accept="audio/*" />
         </form>
       </div>
       <hr className="mb-6" />

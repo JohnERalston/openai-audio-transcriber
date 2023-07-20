@@ -15,15 +15,18 @@ export const Transcriptions: FC<Props> = ({ transcriptions }: Props) => {
 
   return (
     <div id="transcriptionGrid">
-      {transcriptions.map(({ id, fileName, size, transcribedDate }) => (
-        <React.Fragment key={id}>
-          <div>
-            <Link href={`/spiel/${id}`}>{fileName}</Link>
-          </div>
-          <div>{size}</div>
-          <div className="text-right">{transcribedDate}</div>
-        </React.Fragment>
-      ))}
+      {transcriptions.map(
+        ({ id, fileName, size, transcribedDate, complete }) => (
+          <React.Fragment key={id}>
+            <div>{complete ? "Y" : "N"}</div>
+            <div>
+              <Link href={`/spiel/${id}`}>{fileName}</Link>
+            </div>
+            <div>{size}</div>
+            <div className="text-right">{transcribedDate}</div>
+          </React.Fragment>
+        )
+      )}
     </div>
   );
 };
