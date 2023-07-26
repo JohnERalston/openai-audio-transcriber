@@ -25,6 +25,23 @@ export default async function Home() {
             Transcribe
           </button>
           <input type="file" name="file" accept="audio/*" />
+          <input
+            type="checkbox"
+            name="override"
+            id="override"
+            className="ml-5"
+          />
+          <label htmlFor="override" className="ml-1">
+            Transcribe again
+          </label>
+          <div>
+            <h4>Prompt</h4>
+            <textarea
+              name="prompt"
+              className="w-full"
+              defaultValue={process.env.NEXT_PUBLIC_PROMPT}
+            ></textarea>
+          </div>
         </form>
       </div>
       <hr className="mb-6" />
