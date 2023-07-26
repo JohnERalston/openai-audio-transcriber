@@ -7,7 +7,7 @@ export async function updateTranscription(values: FormData) {
   const id = values.get("id")! as string;
   const complete = values.get("complete");
   await db.collection("transcriptions").doc(id).update({
-    transcription: updatedTranscription,
+    transcript: updatedTranscription,
     transcribedDate: new Date().toISOString(),
     complete: !!complete,
   });

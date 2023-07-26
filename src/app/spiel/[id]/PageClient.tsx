@@ -12,17 +12,13 @@ interface Props {
 
 const path = "/assets/audio/";
 
-function copyToClipboard(
-  title: string,
-  fileName: string,
-  transcription: string
-) {
+function copyToClipboard(title: string, fileName: string, transcript: string) {
   const html = `
   <audio data-title="${title}" controls>
         <source src="${path}${fileName}" type="audio/m4a" />
         Your browser does not support the audio element.
       </audio>
-      <div data-transcript>${transcription}</div>
+      <div data-transcript>${transcript}</div>
   `.trim();
   window.navigator.clipboard.writeText(html);
 }
@@ -50,7 +46,7 @@ export function PageClient({ transcription }: Props) {
         <textarea
           className="w-full h-96 whitespace-pre-wrap p-1 rounded-lg"
           name="updatedTranscription"
-          defaultValue={transcription.transcription}
+          defaultValue={transcription.transcript}
         ></textarea>
         <div className="text-right my-2">
           <input
@@ -85,7 +81,7 @@ export function PageClient({ transcription }: Props) {
             copyToClipboard(
               title,
               transcription.fileName,
-              transcription.transcription
+              transcription.transcript
             )
           }
         >

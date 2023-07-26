@@ -11,6 +11,7 @@ function verifyFile(file: File) {
   }
 }
 
+// TODO: - fix this mess
 export async function transcribeItem(data: FormData) {
   "use server";
 
@@ -28,7 +29,7 @@ export async function transcribeItem(data: FormData) {
     minutes: 0,
     size: file.size,
     transcribedDate: new Date().toISOString(),
-    transcription: "",
+    transcript: "",
     complete: false,
   };
 
@@ -62,12 +63,12 @@ export async function transcribeItem(data: FormData) {
     transcript = resp.data.text;
     transcription.transcribedDate = new Date().toISOString();
   }
-  transcription.transcription = transcript;
+  transcription.transcript = transcript;
 
   if (existingTranscription) {
     transcription.id = existingTranscription.id;
     await db.collection("transcriptions").doc(transcription.id).update({
-      transcription: transcription.transcription,
+      transcript: transcription.transcript,
       transcribedDate: new Date().toISOString(),
     });
     redirect(`/spiel/${transcription.id}`);

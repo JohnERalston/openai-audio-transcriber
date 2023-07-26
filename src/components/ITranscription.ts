@@ -3,7 +3,7 @@ export interface ITranscription {
   transcribedDate: string;
   fileName: string;
   url: string;
-  transcription: string;
+  transcript: string;
   size: number;
   minutes: number;
   complete: boolean;
