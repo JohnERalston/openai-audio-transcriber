@@ -14,7 +14,7 @@ const path = "/assets/audio/";
 
 function copyToClipboard(title: string, fileName: string, transcript: string) {
   const html = `
-  <audio data-title="${title}" controls>
+  <audio data-title="${title}" controls preload="none">
         <source src="${path}${fileName}" type="audio/m4a" />
         Your browser does not support the audio element.
       </audio>
