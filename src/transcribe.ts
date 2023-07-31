@@ -19,7 +19,7 @@ export async function transcribeItem(data: FormData) {
 
   const file = data.get("file") as File;
   const override = data.get("override") as string;
-  // const prompt = String(data.get("prompt"));
+  const prompt = String(data.get("prompt"));
   verifyFile(file);
 
   const transcription: ITranscription = {
@@ -57,7 +57,15 @@ export async function transcribeItem(data: FormData) {
     const openai = new OpenAIApi(configuration);
     const resp = await openai.createTranscription(
       fileStream as unknown as File,
-      "whisper-1"
+      "whisper-1",
+      undefined,
+      undefined,
+      undefined,
+      "en",
+      {
+        maxBodyLength: Number.MAX_VALUE,
+        maxContentLength: Number.MAX_VALUE,
+      }
     );
     // console.log(resp);
     transcript = resp.data.text;

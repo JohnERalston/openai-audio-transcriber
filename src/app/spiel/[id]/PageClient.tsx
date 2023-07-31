@@ -5,22 +5,10 @@ import { useState } from "react";
 import { updateTranscription } from "./updateTranscription";
 import Link from "next/link";
 import { Audio } from "@/components/Audio";
+import { copyToClipboard } from "@/utils/copyToClipboard";
 
 interface Props {
   transcription: ITranscription;
-}
-
-const path = "/assets/audio/";
-
-function copyToClipboard(title: string, fileName: string, transcript: string) {
-  const html = `
-  <audio data-title="${title}" controls preload="none">
-        <source src="${path}${fileName}" type="audio/m4a" />
-        Your browser does not support the audio element.
-      </audio>
-      <div data-transcript>${transcript}</div>
-  `.trim();
-  window.navigator.clipboard.writeText(html);
 }
 
 export function PageClient({ transcription }: Props) {

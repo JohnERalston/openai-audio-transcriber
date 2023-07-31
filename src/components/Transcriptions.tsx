@@ -14,7 +14,7 @@ export const Transcriptions: FC<Props> = ({ transcriptions }: Props) => {
   }
 
   return (
-    <div id="transcriptionGrid">
+    <div id="transcriptionGrid" className="transcriptionGrid">
       {transcriptions.map(
         ({ id, fileName, size, transcribedDate, complete }) => (
           <React.Fragment key={id}>
